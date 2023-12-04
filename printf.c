@@ -13,6 +13,7 @@ int _printf(const char *format, ...)
 	char *argstr;
 	char argchar;
 	int i = 0;
+	int j = 0;
 
 	va_start(str, format);
 	while (format[i] != '\0')
@@ -23,28 +24,30 @@ int _printf(const char *format, ...)
 			{
 				case 'c':
 					argchar = (char)va_arg(str, int);
-					_putchar(argchar);
+					j += _putchar(argchar);
 					break;
 				case 's':
 					argstr = va_arg(str, char *);
 					write(1, argstr, sizeof(char) * _strlen(argstr));
+					j += _strlen(argstr);
+					break;
+				case 'f':
+					j += print_double(va_arg(str, double));
 					break;
 				case 'd':
-					print_double(va_arg(str, double));
-					break;
 				case 'i':
-					print_int(va_arg(str, int));
+					j += print_int(va_arg(str, int));
 					break;
 				default:
-					_putchar('%');
+					j += _putchar('%');
 					break;
 			}
 			i++;
 		}
 		else
-			_putchar(format[i]);
+			j += _putchar(format[i]);
 		i++;
 	}
 	va_end(str);
-	return (i);
+	return (j);
 }

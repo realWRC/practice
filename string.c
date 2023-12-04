@@ -45,9 +45,10 @@ char *_strcpy(char *dest, char *src)
  * _putchar - function that prints a single character
  * @c: Character to be printed
  */
-void _putchar(char c)
+int _putchar(char c)
 {
 	write(1, &c, 1);
+	return (1);
 }
 /**
  * print_int - function that prints an integer with write function
