@@ -53,7 +53,7 @@ void _putchar(char c)
  * print_int - function that prints an integer with write function
  * @integer: Integer to be printed
  */
-void print_int(int integer)
+int print_int(int integer)
 {
 	int size = snprintf(NULL, 0, "%d", integer);
 	char *container;
@@ -67,12 +67,13 @@ void print_int(int integer)
 	snprintf(container, size + 1, "%d", integer);
 	write(1, container, size);
 	free(container);
+	return (size);
 }
 /**
  * print_double - Prints double with write function
  * @number: floating number point to be printed
  */
-void print_double(double number)
+int print_double(double number)
 {
 	int size = snprintf(NULL, 0, "%f", number);
 	char *container;
@@ -86,4 +87,5 @@ void print_double(double number)
 	snprintf(container, size + 1, "%f", number);
 	write(1, container, size);
 	free(container);
+	return (size);
 }
